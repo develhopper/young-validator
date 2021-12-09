@@ -77,7 +77,7 @@ class Validator{
             $arg[0]=$var;
             $arg[1]=(count($rule_parts)>1)?$rule_parts[1]:[];
             if($rule_name == "required")
-                return;
+                continue;
             $validator = new $this->validations[$rule_name];
             if(!call_user_func_array([$validator ,'validate'],$arg)){
                 return str_replace("{type}",$rule_name,$validator->message);

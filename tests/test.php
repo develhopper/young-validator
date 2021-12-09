@@ -31,14 +31,14 @@ if($result == false){
 
 $input = [
     "number"=>1,
-    "email"=>"email@mail.com",
+    "email"=>"test",
     "age" => 17,
     "message"=>""
 ];
 
 $result = $validator->validate($input,[
     "number" =>  "int",
-    "email" => "email",
+    "email" => "required,email",
     "age" => "int,min:18,max:100",
     "message" => "required,string,min:4,max:30"
 ]);
