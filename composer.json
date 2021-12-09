@@ -2,7 +2,7 @@
     "name": "develhopper/validator",
     "description": "PHP input validator",
     "type": "library",
-    "license": "GPL-3.0-only\"",
+    "license": "GPL-3.0-only",
     "autoload": {
         "psr-4": {
             "Young\\Modules\\Validation\\": "src/"
