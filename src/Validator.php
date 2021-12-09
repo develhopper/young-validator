@@ -45,6 +45,9 @@ class Validator{
         $this->messages = [];
 
         foreach($rules as $field => $rule){
+            if(!isset($input[$field])){
+                $input[$field] = "";
+            }
             $error = $this->error($input[$field], $rule);
             if($error){
                 $this->messages[$field] = str_replace("{field}",$field,$error);
@@ -65,7 +68,7 @@ class Validator{
 
         if(empty(trim($var))){
             if($required)
-                return "field {field} is empty";
+                return "field {field} is required";
             else
                 return;
         }
