@@ -58,14 +58,14 @@ class Validator{
     }
 
     private function error($var,$rule){
-        $rules=explode(",",$rule);
+        $rules=explode("|",$rule);
         $required = false;
         
         if(in_array('required',$rules)){
             $required = true;
         }
 
-        if(empty(trim($var))){
+        if(empty($var)){
             if($required)
                 return "field {field} is required";
             else
@@ -75,7 +75,13 @@ class Validator{
             $rule_parts=explode(":",$rule);
             $rule_name = $rule_parts[0];
             $arg[0]=$var;
-            $arg[1]=(count($rule_parts)>1)?$rule_parts[1]:[];
+
+            $arg[1]=(count($rule_parts)>1)?explode(',',$rule_parts[1]):[];
+            
+            if(count($arg[1]) == 1){
+                $arg[1] = $arg[1][0];
+            }
+            
             if($rule_name == "required")
                 continue;
             $validator = new $this->validations[$rule_name];

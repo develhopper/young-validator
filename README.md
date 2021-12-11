@@ -30,11 +30,12 @@ $input = [
 ];
 
 $rules = [
-    "username" => "required,string:30", //max lenght of string
-    "email" => "required,email",
-    "password" => "required,string,min:8" // required string with minimum 8 characters
-    "age" => "required,int,min:18,max:100",
-    "bio" => "string,min:30,max:255" // not required
+    "username" => "required|string:30", //max lenght of string
+    "email" => "required|email",
+    "password" => "required|string|min:8" // required string with minimum 8 characters
+    "age" => "required|int|min:18|max:100",
+    "bio" => "string|min:30|max:255" // not required
+    "picture" => "file|types:jpg,png" // this validator is present in the young framework
 ];
 
 $result = $validator->validate($input,$rules); // return true of false
