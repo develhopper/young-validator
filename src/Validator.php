@@ -48,7 +48,7 @@ class Validator{
             if(!isset($input[$field])){
                 $input[$field] = "";
             }
-            $error = $this->error($input[$field], $rule);
+            $error = $this->error($input[$field],$field,$rule);
             if($error){
                 $this->messages[$field] = str_replace("{field}",$field,$error);
                 $is_valid = false;
@@ -57,7 +57,7 @@ class Validator{
         return $is_valid;
     }
 
-    private function error($var,$rule){
+    private function error($var,$field$rule){
         $rules=explode("|",$rule);
         $required = false;
         
@@ -85,6 +85,7 @@ class Validator{
             if($rule_name == "required")
                 continue;
             $validator = new $this->validations[$rule_name];
+            $validator->field = $field;
             if(!call_user_func_array([$validator ,'validate'],$arg)){
                 return str_replace("{type}",$rule_name,$validator->message);
             }
