@@ -57,7 +57,7 @@ class Validator{
         return $is_valid;
     }
 
-    private function error($var,$field$rule){
+    private function error($var,$field,$rule){
         $rules=explode("|",$rule);
         $required = false;
         
